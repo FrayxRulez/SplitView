@@ -2,7 +2,7 @@
 
 Introduction
 ============
-This repository contains a porting of SplitView control (Available in Windows 10) for Runtime 8.1.
+This repository contains a porting of SplitView control available in Windows 10 for Runtime 8.1.
 
 Properties are the same, so if in future you want to port your app to 10 you have just to remove the Universal.UI.Xaml.Controls namespace.
 
