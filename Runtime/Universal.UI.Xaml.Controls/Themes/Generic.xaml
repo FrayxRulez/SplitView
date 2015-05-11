@@ -17,9 +17,12 @@
             <SolidColorBrush x:Key="SystemControlPageBackgroundChromeLowBrush" Color="{ThemeResource SystemChromeLowColor}"/>
         </ResourceDictionary>
         <ResourceDictionary x:Key="Light">
+            <!-- For Windows 8.1 == 10 -->
             <!--<x:Double x:Key="SplitViewOpenPaneThemeLength">320</x:Double>-->
-            <x:Double x:Key="SplitViewOpenPaneThemeLength">400</x:Double>
             <!--<x:Double x:Key="SplitViewCompactPaneThemeLength">48</x:Double>-->
+            
+            <!-- For Windows Phone 8.1 -->
+            <x:Double x:Key="SplitViewOpenPaneThemeLength">400</x:Double>
             <x:Double x:Key="SplitViewCompactPaneThemeLength">57.5</x:Double>
 
             <Color x:Key="SystemChromeLowColor">#FFF2F2F2</Color>
