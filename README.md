@@ -17,7 +17,7 @@ If you want to use this control in a Windows app you have just to edit `SplitVie
 ### Silverlight
 In Silverlight the control uses PhoneChromeBrush as PaneBackground.
 
-Default values are 480px for `SplitViewOpenPaneThemeLength`, 72px for `SplitViewCompactPaneThemeLength`.
+Default values are 480px for `SplitViewOpenPaneThemeLength` and 72px for `SplitViewCompactPaneThemeLength`.
 
 
 ### Documentation
