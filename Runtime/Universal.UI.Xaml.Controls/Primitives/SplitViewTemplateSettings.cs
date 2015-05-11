@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+#if SILVERLIGHT
+using System.Windows;
+#else
 using Windows.UI.Xaml;
+#endif
 
 namespace Universal.UI.Xaml.Controls.Primitives
 {

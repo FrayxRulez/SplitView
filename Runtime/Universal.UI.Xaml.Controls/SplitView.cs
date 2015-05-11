@@ -4,12 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Universal.UI.Xaml.Controls.Primitives;
-using Windows.Foundation;
+#if SILVERLIGHT
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Markup;
+using System.Windows.Media;
+using System.Windows.Shapes;
+#else
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
+using Windows.Foundation;
+#endif
 
 namespace Universal.UI.Xaml.Controls
 {
@@ -19,7 +27,11 @@ namespace Universal.UI.Xaml.Controls
     [TemplatePart(Name = "PaneClipRectangle", Type = typeof(RectangleGeometry))]
     [TemplatePart(Name = "LightDismissLayer", Type = typeof(Rectangle))]
     [TemplatePart(Name = "PaneRoot", Type = typeof(Border))]
+#if SILVERLIGHT
+    [ContentProperty("Content")]
+#else
     [ContentProperty(Name = "Content")]
+#endif
     public class SplitView : Control
     {
         private RectangleGeometry PaneClipRectangle;
@@ -42,7 +54,12 @@ namespace Universal.UI.Xaml.Controls
             };
         }
 
-        protected override void OnApplyTemplate()
+#if SILVERLIGHT
+        public
+#else
+        protected 
+#endif
+            override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
 
@@ -50,13 +67,25 @@ namespace Universal.UI.Xaml.Controls
             PaneClipRectangle.Rect = new Rect(0, 0, OpenPaneLength, ActualHeight);
 
             LightDismissLayer = (Rectangle)GetTemplateChild("LightDismissLayer");
+#if SILVERLIGHT
+            LightDismissLayer.Tap += OnLightDismiss;
+#else
             LightDismissLayer.PointerPressed += OnLightDismiss;
+#endif
 
             PaneRoot = (Border)GetTemplateChild("PaneRoot");
+#if SILVERLIGHT
+            PaneRoot.Tap += OnLightDismiss;
+#else
             PaneRoot.PointerPressed += OnLightDismiss;
+#endif
         }
 
+#if SILVERLIGHT
+        private void OnLightDismiss(object sender, System.Windows.Input.GestureEventArgs e)
+#else
         private void OnLightDismiss(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+#endif
         {
             if (IsPaneOpen)
             {
@@ -316,7 +345,7 @@ namespace Universal.UI.Xaml.Controls
             if (PaneClosing != null)
             {
                 var args = new SplitViewPaneClosingEventArgs();
-                foreach (TypedEventHandler<SplitView, SplitViewPaneClosingEventArgs> tmp in PaneClosing.GetInvocationList())
+                foreach (Windows.Foundation.TypedEventHandler<SplitView, SplitViewPaneClosingEventArgs> tmp in PaneClosing.GetInvocationList())
                 {
                     tmp(this, args);
                     if (args.Cancel)
@@ -345,11 +374,11 @@ namespace Universal.UI.Xaml.Controls
         /// <summary>
         /// Occurs when the <see cref="SplitView"/> pane is closed.
         /// </summary>
-        public event TypedEventHandler<SplitView, Object> PaneClosed;
+        public event Windows.Foundation.TypedEventHandler<SplitView, Object> PaneClosed;
 
         /// <summary>
         /// Occurs when the <see cref="SplitView"/> pane is closing.
         /// </summary>
-        public event TypedEventHandler<SplitView, SplitViewPaneClosingEventArgs> PaneClosing;
+        public event Windows.Foundation.TypedEventHandler<SplitView, SplitViewPaneClosingEventArgs> PaneClosing;
     }
 }
