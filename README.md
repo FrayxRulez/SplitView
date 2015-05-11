@@ -1,4 +1,4 @@
-# SplitView for 8.1
+# SplitView for Runtime & Silverlight
 
 Introduction
 ============
