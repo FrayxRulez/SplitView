@@ -50,7 +50,7 @@ namespace Universal.UI.Xaml.Controls
             Loaded += (s, args) =>
             {
                 TemplateSettings.Update();
-                OnStateChanged();
+                OnStateChanged(false);
             };
         }
 
@@ -283,7 +283,7 @@ namespace Universal.UI.Xaml.Controls
             }
         }
 
-        protected virtual void OnStateChanged()
+        protected virtual void OnStateChanged(bool animated = true)
         {
             if (PaneClipRectangle != null)
             {
@@ -317,7 +317,7 @@ namespace Universal.UI.Xaml.Controls
                 }
             }
 
-            VisualStateManager.GoToState(this, state, true);
+            VisualStateManager.GoToState(this, state, animated);
         }
 
         private static void OnIsPaneOpenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
