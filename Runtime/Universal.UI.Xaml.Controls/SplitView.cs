@@ -36,7 +36,6 @@ namespace Universal.UI.Xaml.Controls
     {
         private RectangleGeometry PaneClipRectangle;
         private Rectangle LightDismissLayer;
-        private Border PaneRoot;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SplitView"/> class.
@@ -71,13 +70,6 @@ namespace Universal.UI.Xaml.Controls
             LightDismissLayer.Tap += OnLightDismiss;
 #else
             LightDismissLayer.PointerPressed += OnLightDismiss;
-#endif
-
-            PaneRoot = (Border)GetTemplateChild("PaneRoot");
-#if SILVERLIGHT
-            PaneRoot.Tap += OnLightDismiss;
-#else
-            PaneRoot.PointerPressed += OnLightDismiss;
 #endif
         }
 
